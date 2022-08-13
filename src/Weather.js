@@ -10,6 +10,8 @@ export default function Weather() {
   let [tempMax, setTempMax] = useState("");
   let [tempMin, setTempMin] = useState("");
   let [animation, setAnimation] = useState("");
+  let [latitude, setLatitude] = useState("");
+  let [longitude, setLongitude] = useState("");
   function showCity(event) {
     event.preventDefault();
     let apiKey = "1916e467d6475f3e271325f70b379c90";
@@ -19,17 +21,35 @@ export default function Weather() {
   function handleCity(event) {
     setCity(event.target.value);
   }
+
   function handleResponse(response) {
+    console.log(response);
     setTemp(Math.round(response.data.main.temp));
     setDescription(response.data.weather[0].description);
     setHumidity(response.data.main.humidity);
     setTempMax(response.data.main.temp_max);
     setTempMin(response.data.main.temp_min);
-    setVisibility(response.data.main.visibility);
+    setVisibility(response.data.visibility);
+    setCity(response.data.name);
 
     setAnimation(
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
+  }
+  function showPosition(position) {
+    console.log(position);
+    setLatitude(position.coords.latitude);
+    setLongitude(position.coords.longitude);
+
+    let apiKey = "1916e467d6475f3e271325f70b379c90";
+    let apiEndpint = "https://api.openweathermap.org/data/2.5/weather";
+    let apiUrl = `${apiEndpint}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+    console.log(apiUrl);
+    axios.get(apiUrl).then(handleResponse);
+  }
+  function CurrentPosition(event) {
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition(showPosition);
   }
 
   return (
@@ -45,7 +65,12 @@ export default function Weather() {
             />
 
             <input type="submit" value="Search" className="button-city" />
-            <input type="submit" value="current" className="button-current" />
+            <input
+              type="submit"
+              value="current"
+              className="button-current"
+              onClick={CurrentPosition}
+            />
           </form>
           <h1>{city}</h1>
           <div className="time">
