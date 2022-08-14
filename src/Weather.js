@@ -126,7 +126,7 @@ export default function Weather() {
         </div>
       </div>
       <div className="open-sorce">
-        <a className="link" href="https://github.com/Asma710/my-project-app">
+        <a className="link" href="https://github.com/Asma710/weather-react">
           Open-sorce code
         </a>
         by Asma Mohamed Lamin
