@@ -92,7 +92,7 @@ export default function Weather() {
             <div className="col-4 fs-5">
               Sky
               <div className="rain">
-                <span>{description}</span>%
+                <span>{description}</span>
               </div>
             </div>
             <div className="col-4 fs-5">
