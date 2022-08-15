@@ -10,11 +10,12 @@ body {
 .Weather h1,
 h3 {
   font-family: "Roboto", sans-serif;
-  width: 200px;
+
   line-height: 1.5;
 }
 .Weather h1 {
-  margin-top: -110px;
+  margin: 0;
+  padding: 0;
   font-size: 50px;
   color: white;
 }
@@ -65,21 +66,20 @@ h3 {
 .Weather .fa-solid {
   color: antiquewhite;
 }
-.Weather .city {
-  margin-top: 20px;
-  padding: 5px;
-  border: 1px solid #9d606a;
-  border-radius: 10px;
-}
+
 .Weather .button-city {
-  margin-top: 20px;
-  padding: 5px;
+  margin: 28px 5px;
+  padding: 8px;
   background: #6c63ff;
   color: aliceblue;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
   transition: all 200ms ease-in-out;
 }
+.input-flex {
+  display: flex;
+}
+
 .Weather .button-city:hover {
   background: aliceblue;
   color: #6c63ff;
@@ -109,14 +109,15 @@ h3 {
   margin-top: 2px;
 }
 .Weather .button-current {
-  margin-top: 20px;
-  padding: 5px;
+  margin: 28px 5px;
+  padding: 8px;
   background-color: lightpink;
   color: aliceblue;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
   transition: all 200ms ease-in-out;
 }
+
 .Weather .button-current:hover {
   background: aliceblue;
   color: #9d606a;

@@ -57,22 +57,31 @@ export default function Weather() {
       <div className="container">
         <div className="weatherToday">
           <form onSubmit={showCity}>
-            <input
-              type="text"
-              placeholder="Enter Your City"
-              className="city"
-              onChange={handleCity}
-            />
-
-            <input type="submit" value="Search" className="button-city" />
-            <input
-              type="submit"
-              value="current"
-              className="button-current"
-              onClick={CurrentPosition}
-            />
+            <div className="row">
+              <div className="col-8">
+                <input
+                  type="text"
+                  placeholder="Enter Your City"
+                  className="mt-4 p-2 ms-3 form-control"
+                  onChange={handleCity}
+                />
+              </div>
+              <div className="col-3">
+                <div className="input-flex">
+                  <input type="submit" value="Search" className="button-city" />
+                  <input
+                    type="submit"
+                    value="current"
+                    className=" button-current"
+                    onClick={CurrentPosition}
+                  />
+                </div>
+              </div>
+            </div>
           </form>
+
           <h1>{city}</h1>
+
           <div className="time">
             <div className="newTime"></div>
             <div className="hour"></div>
