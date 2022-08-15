@@ -72,7 +72,7 @@ export default function Weather() {
                   <input
                     type="submit"
                     value="current"
-                    className=" button-current"
+                    className="button-current"
                     onClick={CurrentPosition}
                   />
                 </div>
