@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import WetherInfo from "./WeatherInfo";
+import WeatherIcon from "./WeatherIcon";
 
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
@@ -31,7 +32,7 @@ export default function Weather(props) {
       visibility: response.data.visibility,
       city: response.data.name,
 
-      animation: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      animation: response.data.weather[0].icon,
     });
     setReady(true);
   }
@@ -96,12 +97,7 @@ export default function Weather(props) {
               <div className="weather-forcast-date">Sun</div>
 
               <br />
-              <img
-                src={weatherData.animation}
-                width="66px"
-                height="55px"
-                alt="img"
-              />
+              <WeatherIcon code={weatherData.animation} />
               <br />
               <div className="weather-forcast-temperatures">
                 <span className="weather-forcast-temperatures-max">
