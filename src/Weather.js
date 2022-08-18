@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import WetherInfo from "./WeatherInfo";
-import WeatherIcon from "./WeatherIcon";
+
+import WeatherForcast from "./WeatherForecast";
 
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
@@ -92,23 +93,7 @@ export default function Weather(props) {
 
             <WetherInfo info={weatherData} />
           </div>
-          <div className="days">
-            <div className="week Sun">
-              <div className="weather-forcast-date">Sun</div>
-
-              <br />
-              <WeatherIcon code={weatherData.animation} />
-              <br />
-              <div className="weather-forcast-temperatures">
-                <span className="weather-forcast-temperatures-max">
-                  {weatherData.tempMax}/
-                </span>
-                <span className="weather-forcast-temperature-min">
-                  {weatherData.tempMin}
-                </span>
-              </div>
-            </div>
-          </div>
+          <WeatherForcast forecast={weatherData} />
         </div>
         <div className="open-sorce">
           <a className="link" href="https://github.com/Asma710/weather-react">
