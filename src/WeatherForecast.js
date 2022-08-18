@@ -9,7 +9,7 @@ export default function WeatherForcast(props) {
           <div className="weather-forcast-date">Sun</div>
 
           <br />
-          <WeatherIcon code={props.forecast.animation} />
+          <WeatherIcon code={props.forecast.animation} size={36} />
           <br />
           <div className="weather-forcast-temperatures">
             <span className="weather-forcast-temperatures-max">
