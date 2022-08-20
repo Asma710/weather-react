@@ -9,7 +9,7 @@ export default function FormateDate(props) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  let date = props.date.getDate();
+
   let days = [
     "Sunday",
     "Monday",
@@ -20,24 +20,10 @@ export default function FormateDate(props) {
     "Saturday",
   ];
   let day = days[props.date.getDay()];
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "	May",
-    "June",
-    "July",
-    "	August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  let month = months[props.date.getMonth()];
+
   return (
-    <div>
-      {day} {date} {hours}:{minutes} {month}
+    <div className="date">
+      {day} {hours}:{minutes}
     </div>
   );
 }

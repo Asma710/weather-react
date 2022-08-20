@@ -43,7 +43,7 @@ export default function Weather(props) {
     setLatitude(position.coords.latitude);
     setLongitude(position.coords.longitude);
 
-    let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+    let apiKey = "1916e467d6475f3e271325f70b379c90";
     let apiEndpint = "https://api.openweathermap.org/data/2.5/weather";
     let apiUrl = `${apiEndpint}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
     console.log(apiUrl);
@@ -54,7 +54,7 @@ export default function Weather(props) {
     navigator.geolocation.getCurrentPosition(showPosition);
   }
   function search() {
-    let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+    let apiKey = "1916e467d6475f3e271325f70b379c90";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
@@ -64,35 +64,31 @@ export default function Weather(props) {
     return (
       <div className="Weather">
         <div className="container">
-          <div className="weatherToday">
-            <form onSubmit={showCity}>
-              <div className="row">
-                <div className="col-8">
+          <form onSubmit={showCity}>
+            <div className="row">
+              <div className="col-9">
+                <input
+                  type="text"
+                  placeholder="Enter Your City"
+                  className="mt-4 p-3 ms-3 form-control"
+                  onChange={handleCity}
+                />
+              </div>
+              <div className="col-3">
+                <div className="input-flex">
+                  <input type="submit" value="Search" className="button-city" />
+
                   <input
-                    type="text"
-                    placeholder="Enter Your City"
-                    className="mt-4 p-2 ms-3 form-control"
-                    onChange={handleCity}
+                    type="submit"
+                    value="current"
+                    className="button-current d-none d-md-block"
+                    onClick={CurrentPosition}
                   />
                 </div>
-                <div className="col-3">
-                  <div className="input-flex">
-                    <input
-                      type="submit"
-                      value="Search"
-                      className="button-city"
-                    />
-                    <input
-                      type="submit"
-                      value="current"
-                      className="button-current"
-                      onClick={CurrentPosition}
-                    />
-                  </div>
-                </div>
               </div>
-            </form>
-
+            </div>
+          </form>
+          <div className="weatherToday">
             <WeatherInfo info={weatherData} />
           </div>
           <WeatherForecast forecast={weatherData.coordinates} />
