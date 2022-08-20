@@ -1,26 +1,50 @@
-import React from "react";
-import WeatherIcon from "./WeatherIcon";
-export default function WeatherForcast(props) {
-  console.log(props.animation);
-  return (
-    <div className="WeatherForecast">
-      <div className="days">
-        <div className="week Sun">
-          <div className="weather-forcast-date">Sun</div>
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import WeatherForecastDay from "./WeatherForecastDay";
 
-          <br />
-          <WeatherIcon code={props.forecast.animation} size={36} />
-          <br />
-          <div className="weather-forcast-temperatures">
-            <span className="weather-forcast-temperatures-max">
-              {Math.round(props.forecast.tempMax)}/
-            </span>
-            <span className="weather-forcast-temperature-min">
-              {Math.round(props.forecast.tempMin)}
-            </span>
-          </div>
+export default function WeatherForcast(props) {
+  console.log(props.forecast);
+  const [ready, setReady] = useState(false);
+  const [forecast, setForecast] = useState(null);
+  useEffect(() => {
+    setReady(false);
+  }, [props.forecast]);
+
+  function handleForcast(response) {
+    console.log(response.data);
+    setForecast(response.data.daily);
+    setReady(true);
+  }
+  function forcastSearch() {
+    let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+    let latitude = props.forecast.lat;
+    let longitude = props.forecast.lon;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleForcast);
+  }
+  if (ready) {
+    console.log(forecast);
+    return (
+      <div className="WeatherForecast">
+        <div className="row">
+          {forecast.map(function (dailyForcast, index) {
+            if (index < 4) {
+              return (
+                <div className="col-3">
+                  <div className="days" key={index}>
+                    <WeatherForecastDay data={dailyForcast} />
+                  </div>
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })}
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    forcastSearch();
+    return null;
+  }
 }
