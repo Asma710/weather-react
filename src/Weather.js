@@ -65,12 +65,12 @@ export default function Weather(props) {
       <div className="Weather">
         <div className="container">
           <form onSubmit={showCity}>
-            <div className="row">
+            <div className="row mt-2">
               <div className="col-9">
                 <input
                   type="text"
                   placeholder="Enter Your City"
-                  className="mt-4 p-3 ms-3 form-control"
+                  className="mt-4 p-3  form-control"
                   onChange={handleCity}
                 />
               </div>
@@ -97,7 +97,7 @@ export default function Weather(props) {
           <a className="link" href="https://github.com/Asma710/weather-react">
             Open-sorce code
           </a>
-          by Asma Mohamed Lamin
+          <span> by Asma Mohamed Lamin</span>
         </div>
       </div>
     );

@@ -1,6 +1,6 @@
 body {
   font-family: "PT Mono", monospace;
-
+  line-height: 1;
   background-image: url("./sky2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -126,13 +126,14 @@ h3 {
 }
 .Weather .open-sorce {
   text-align: center;
+  margin-bottom: 22px;
   font-size: 20px;
   font-weight: 500;
   font-family: "Roboto", sans-serif;
 }
 .Weather a {
   text-decoration: none;
-  color: aqua;
+  color: #0057be;
   font-weight: 500;
   font-family: "Roboto", sans-serif;
 }
@@ -179,12 +180,26 @@ h3 {
 .date {
   margin-top: 20px;
 }
-@media (min-width: 560px) {
-  .container {
-    max-width: 600px;
+
+.button-city {
+  padding: 25px 45px;
+  margin-left: 15px;
+}
+.weather-forcast-temperatures-max {
+  color: #386392;
+}
+
+@media (max-width: 800px) {
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
   }
   .button-city {
-    padding: 25px 45px;
-    margin-left: 15px;
+    padding: 10px 25px;
+  }
+  .form-control {
+    padding: 10px 5px;
   }
 }
