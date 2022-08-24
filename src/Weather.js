@@ -8,8 +8,6 @@ export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
   let [ready, setReady] = useState(false);
   let [weatherData, setWeatherData] = useState({});
-  let [latitude, setLatitude] = useState("");
-  let [longitude, setLongitude] = useState("");
 
   function showCity(event) {
     event.preventDefault();
@@ -38,21 +36,7 @@ export default function Weather(props) {
     });
     setReady(true);
   }
-  function showPosition(position) {
-    console.log(position);
-    setLatitude(position.coords.latitude);
-    setLongitude(position.coords.longitude);
 
-    let apiKey = "1916e467d6475f3e271325f70b379c90";
-    let apiEndpint = "https://api.openweathermap.org/data/2.5/weather";
-    let apiUrl = `${apiEndpint}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-    console.log(apiUrl);
-    axios.get(apiUrl).then(handleResponse);
-  }
-  function CurrentPosition(event) {
-    event.preventDefault();
-    navigator.geolocation.getCurrentPosition(showPosition);
-  }
   function search() {
     let apiKey = "1916e467d6475f3e271325f70b379c90";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -65,26 +49,17 @@ export default function Weather(props) {
       <div className="Weather">
         <div className="container">
           <form onSubmit={showCity}>
-            <div className="row mt-2">
-              <div className="col-9">
+            <div className="row mt-5 ">
+              <div className="col-10">
                 <input
                   type="text"
                   placeholder="Enter Your City"
-                  className="mt-4 p-3  form-control"
+                  className=" p-3  form-control"
                   onChange={handleCity}
                 />
               </div>
-              <div className="col-3">
-                <div className="input-flex">
-                  <input type="submit" value="Search" className="button-city" />
-
-                  <input
-                    type="submit"
-                    value="current"
-                    className="button-current d-none d-md-block"
-                    onClick={CurrentPosition}
-                  />
-                </div>
+              <div className="col-2">
+                <input type="submit" value="Search" className="button-city" />
               </div>
             </div>
           </form>
@@ -103,6 +78,7 @@ export default function Weather(props) {
     );
   } else {
     search();
+
     return "Please waite....";
   }
 }
